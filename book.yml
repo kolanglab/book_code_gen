@@ -22,3 +22,8 @@ chapters:
       - jit.md
   - appendix:
     - glossary.md
+
+repository: "https://github.com/kolanglab/book_code_gen"
+
+github_review:
+  enabled: true
