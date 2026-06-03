@@ -1,0 +1,24 @@
+title: "コード生成入門"
+author: "ligarb"
+language: "ja"
+ai_generated: true
+bibliography: references.bib
+chapters:
+  - cover: cover.md
+  - part: part1.md
+    chapters:
+      - introduction.md
+      - ir.md
+      - tree-walking.md
+      - control-flow.md
+      - functions.md
+  - part: part2.md
+    chapters:
+      - instruction-selection.md
+      - register-allocation.md
+  - part: part3.md
+    chapters:
+      - optimization.md
+      - jit.md
+  - appendix:
+    - glossary.md
