@@ -1,4 +1,5 @@
 title: "コード生成入門"
+description: "AST 取得後のコード生成を、IR・命令選択・レジスタ割り当て・最適化・JIT までコンパイラ視点で"
 author: "ligarb"
 language: "ja"
 ai_generated: true
