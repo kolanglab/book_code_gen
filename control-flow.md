@@ -23,7 +23,7 @@
 
 `branch_unless` は「条件が成り立たなければ飛ぶ」命令です。「成り立つときに飛ぶ」
 ではなく「成り立たないときに飛ぶ」のが、`if` 文のコード生成では便利になります。
-理由はあとですぐ分かります。
+理由はすぐあとで分かります。
 
 ラベルをどう実装するかですが、本書では2段階に分けます。コード生成中は `L0`, `L1` の
 ような**仮のラベル名**を使い、命令列に `[:label, "L0"]` という目印を埋め込んで
@@ -59,7 +59,7 @@ class VM
       when :lt  then b, a = stack.pop, stack.pop; stack.push(a <  b ? 1 : 0)
       when :eq  then b, a = stack.pop, stack.pop; stack.push(a == b ? 1 : 0)
       when :jump          then pc = labels[arg]; next
-      when :branch_unless then pc = labels[arg] and next if stack.pop == 0
+      when :branch_unless then (pc = labels[arg]; next) if stack.pop == 0
       when :pop then stack.pop
       end
       pc += 1
@@ -205,7 +205,8 @@ when :and
   emit(:label, l_end)
 ```
 
-ここでは新たに `dup`（スタックのてっぺんを複製する命令）を使いました。左辺の結果を
+ここでは新たに `dup`（スタックのてっぺんを複製する命令）を使いました。VM 側への
+追加は `when :dup then stack.push(stack.last)` の1行です。左辺の結果を
 **判定にも最終結果にも**使いたいためです。左辺が偽ならその偽の値が全体の結果に
 なり、右辺は評価されません。左辺が真なら、複製を捨てて右辺の値を結果とします。
 `||` も同様に、左辺が真なら短絡するよう対称的に書けます。
