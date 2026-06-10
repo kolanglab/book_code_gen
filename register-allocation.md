@@ -117,7 +117,7 @@ class GraphColoring
       g.delete(node)
     end
 
-    # 2. 彩色: 逆順に戻しwhile、隣と衝突しない色を割り当てる
+    # 2. 彩色: 逆順に戻しながら、隣と衝突しない色を割り当てる
     color = {}
     stack.reverse_each do |node|
       used = @graph[node].map { |nb| color[nb] }.compact
@@ -144,7 +144,7 @@ graph = {
   "d" => Set["c"],
 }
 p GraphColoring.new(graph, 3).allocate
-# => {"d"=>0, "c"=>1, "b"=>0, "a"=>2}  （どの色番号が割り当たるかは実装依存）
+# => {"d" => 0, "c" => 1, "b" => 0, "a" => 2}  （どの色番号が割り当たるかは実装依存）
 ```
 
 `a`・`b`・`c` は互いに干渉するので別々の色（`2`・`0`・`1`）になり、`d` は `c` と
